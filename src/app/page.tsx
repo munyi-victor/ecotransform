@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <meta name="google-site-verification" content="w7Lah07LBGCAC4XQZsTMFpdAkNBGxVDhtWgWVDYCVaA" />
       <Navigation />
       <Hero />
       <ProductShowcase />
