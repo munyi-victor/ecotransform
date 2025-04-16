@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ProductDetails from './ProductDetails';
 
 // Server component for metadata
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // In a real app, you would fetch the product data here
   // For now, we'll return a generic metadata
   return {
