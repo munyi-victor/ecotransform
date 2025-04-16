@@ -1,27 +1,29 @@
-import { Metadata } from 'next';
-import ProductDetails from './ProductDetails';
+import { Metadata } from "next";
+import ProductDetails from "./ProductDetails";
 
 type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
 // Server component for metadata
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   // In a real app, you would fetch the product data here
   // For now, we'll return a generic metadata
   return {
-    title: 'Product Details | EcoTransform',
-    description: 'View detailed information about our sustainable products made from recycled materials.',
+    title: "Product Details | EcoTransform",
+    description:
+      "View detailed information about our sustainable products made from recycled materials.",
     openGraph: {
-      title: 'Product Details | EcoTransform',
-      description: 'View detailed information about our sustainable products made from recycled materials.',
+      title: "Product Details | EcoTransform",
+      description:
+        "View detailed information about our sustainable products made from recycled materials.",
       images: [
         {
-          url: '/images/wood_table.jpg',
+          url: "/images/wood_table.jpg",
           width: 800,
           height: 600,
-          alt: 'EcoTransform Product',
+          alt: "EcoTransform Product",
         },
       ],
     },
@@ -30,4 +32,4 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default function Page({ params }: Props) {
   return <ProductDetails id={params.id} />;
-} 
+}
