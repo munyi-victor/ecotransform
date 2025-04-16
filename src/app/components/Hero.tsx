@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -6,11 +7,15 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10" /> {/* Stronger gradient overlay */}
-        <img
-          src="/images/background.jpg"
-          alt="Eco-friendly background"
-          className="w-full h-full object-cover object-right"
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/background.jpg"
+            alt="Eco-friendly background"
+            fill
+            className="object-cover object-right"
+            priority
+          />
+        </div>
       </div>
 
       {/* Content */}

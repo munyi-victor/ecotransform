@@ -3,8 +3,26 @@
 import { useParams } from 'next/navigation';
 import ProductDetails from '@/app/components/ProductDetails';
 
-// This would typically come from an API or database
-const products = [
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  impact: {
+    co2: number;
+    water: number;
+    trees: number;
+  };
+  details: {
+    materials: string[];
+    dimensions: string;
+    care: string;
+    story: string;
+  };
+};
+
+const products: Product[] = [
   {
     id: 1,
     name: "Recycled Wood Table",
