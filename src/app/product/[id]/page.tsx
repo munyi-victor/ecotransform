@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import ProductDetails from "./ProductDetails";
 
 type Props = {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: {
+    id: string;
+  };
 };
 
 // Server component for metadata
