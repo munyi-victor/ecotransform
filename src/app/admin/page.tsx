@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 type Product = {
   id: string;
@@ -111,11 +112,15 @@ const AdminPage = () => {
 
   useEffect(() => {
     const storedProducts = localStorage.getItem('products');
+    console.log('Initial stored products:', storedProducts);
     if (!storedProducts) {
+      console.log('Setting default products');
       localStorage.setItem('products', JSON.stringify(defaultProducts));
       setProducts(defaultProducts);
     } else {
-      setProducts(JSON.parse(storedProducts));
+      const parsedProducts = JSON.parse(storedProducts);
+      console.log('Loaded existing products:', parsedProducts);
+      setProducts(parsedProducts);
     }
   }, []);
 
@@ -181,6 +186,7 @@ const AdminPage = () => {
           ? { ...newProduct, id: editingProduct.id } as Product
           : product
       );
+      console.log('Updating products:', updatedProducts);
       setProducts(updatedProducts);
       localStorage.setItem('products', JSON.stringify(updatedProducts));
       setEditingProduct(null);
@@ -192,6 +198,8 @@ const AdminPage = () => {
       } as Product;
       
       const updatedProducts = [...products, productToAdd];
+      console.log('Adding new product:', productToAdd);
+      console.log('Updated products list:', updatedProducts);
       setProducts(updatedProducts);
       localStorage.setItem('products', JSON.stringify(updatedProducts));
     }
@@ -219,6 +227,8 @@ const AdminPage = () => {
 
   const handleDeleteProduct = (id: string) => {
     const updatedProducts = products.filter(product => product.id !== id);
+    console.log('Deleting product:', id);
+    console.log('Updated products after deletion:', updatedProducts);
     setProducts(updatedProducts);
     localStorage.setItem('products', JSON.stringify(updatedProducts));
   };
@@ -300,11 +310,12 @@ const AdminPage = () => {
                     />
                   </div>
                   {imagePreview && (
-                    <div className="mt-2">
-                      <img 
-                        src={imagePreview} 
-                        alt="Preview" 
-                        className="h-32 w-32 object-cover rounded-md"
+                    <div className="mt-2 relative h-32 w-32">
+                      <Image
+                        src={imagePreview}
+                        alt="Preview"
+                        fill
+                        className="object-cover rounded-md"
                       />
                     </div>
                   )}
@@ -400,11 +411,14 @@ const AdminPage = () => {
                     className="border border-gray-200 rounded-md p-4 flex justify-between items-center"
                   >
                     <div className="flex items-center space-x-4">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
-                        className="h-16 w-16 object-cover rounded-md"
-                      />
+                      <div className="relative h-16 w-16">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                      </div>
                       <div>
                         <h3 className="font-medium text-gray-900 font-sans">{product.name}</h3>
                         <p className="text-sm text-gray-500 font-sans">{product.category}</p>

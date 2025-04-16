@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,22 +17,28 @@ type Product = {
   };
 };
 
-const categories = ['All', 'Furniture', 'Accessories', 'Art', 'Homeware'];
+const categories = ['All', 'Furniture', 'Accessories', 'Art', 'Homeware'] as const;
 
 const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>('All');
 
   useEffect(() => {
     const storedProducts = localStorage.getItem('products');
+    console.log('Stored products:', storedProducts);
     if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
+      const parsedProducts = JSON.parse(storedProducts);
+      console.log('Parsed products:', parsedProducts);
+      setProducts(parsedProducts);
     }
   }, []);
 
   const filteredProducts = selectedCategory === 'All'
     ? products
     : products.filter(product => product.category === selectedCategory);
+
+  console.log('Filtered products:', filteredProducts);
+  console.log('Selected category:', selectedCategory);
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
