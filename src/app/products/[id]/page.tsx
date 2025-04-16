@@ -116,8 +116,8 @@ const products = [
 ];
 
 export default function ProductPage() {
-  const params = useParams();
-  const product = products.find(p => p.id === Number(params.id));
+  const { id } = useParams();
+  const product = products.find(p => p.id === Number(id));
 
   if (!product) {
     return (
