@@ -1,8 +1,13 @@
 import { Metadata } from 'next';
 import ProductDetails from './ProductDetails';
 
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+};
+
 // Server component for metadata
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // In a real app, you would fetch the product data here
   // For now, we'll return a generic metadata
   return {
@@ -23,6 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page({ params }: Props) {
   return <ProductDetails id={params.id} />;
 } 

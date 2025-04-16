@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ecotransform.vercel.app/sitemap.xml
+Sitemap: https://ecotransform.com/sitemap.xml
 
 # Disallow admin routes
 Disallow: /admin 

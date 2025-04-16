@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navigation from "./components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "EcoTransform | Sustainable Products from Recycled Materials",
   description: "EcoTransform creates beautiful, sustainable products from recycled materials. Join us in transforming waste into wonderful items that make a difference for our planet.",
-  keywords: "sustainable products, recycled materials, eco-friendly, upcycled furniture, green products, environmental impact, waste reduction",
-  authors: [{ name: "Munyi Victor" }],
+  keywords: "sustainable products, recycled materials, eco-friendly, furniture, accessories, art, homeware, environmental impact",
+  authors: [{ name: "EcoTransform" }],
   creator: "Munyi Victor",
   publisher: "EcoTransform",
   formatDetection: {
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'EcoTransform | Sustainable Products',
-    description: 'Transforming waste into wonderful sustainable products that make a difference for our planet.',
+    description: 'Beautiful, sustainable products from recycled materials',
     creator: '@munyi_victor',
     images: ['/images/background.jpg'],
   },
@@ -63,25 +64,26 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code',
+    google: 'your-google-verification-code',
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#10b981" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navigation />
         {children}
       </body>
     </html>
